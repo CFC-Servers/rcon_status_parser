@@ -68,6 +68,7 @@ class StatusParser():
         player_ping           = re.findall(self.patterns["players"]["ping/loss"], player)[0]
         player_loss           = re.findall(self.patterns["players"]["ping/loss"], player)[1]
         player_ip             = re.findall(self.patterns["players"]["ip"], player)[0]
+        player_state          = re.findall(self.patterns["players"]["state"], player)[0]
 
         return {
             "id"             : player_id,
@@ -76,7 +77,8 @@ class StatusParser():
             "time_connected" : player_time_connected,
             "ping"           : player_ping,
             "loss"           : player_loss,
-            "ip"             : player_ip
+            "ip"             : player_ip,
+            "state"          : player_state
         }
 
     def get_players(self, rcon):
