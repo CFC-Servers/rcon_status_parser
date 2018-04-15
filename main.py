@@ -26,27 +26,17 @@ class StatusParser():
 
     def parse(self, rcon):
         rcon = rcon.decode("utf-8")
-        hostname         = self.get_hostname(rcon)
-        version          = self.get_version(rcon)
-        ip               = self.get_ip(rcon)
-        port             = self.get_port(rcon)
-        sv_map           = self.get_map(rcon)
-        player_count     = self.get_player_count(rcon)
-        max_player_count = self.get_max_player_count(rcon)
-        players          = self.get_players(rcon)
 
-        status = {
-            "hostname"         : hostname,
-            "version"          : version,
-            "ip"               : ip,
-            "port"             : port,
-            "map"              : sv_map,
-            "player_count"     : player_count,
-            "max_player_count" : max_player_count,
-            "players"          : players
-        }
-
-        return json.dumps(status)
+        return json.dumps({
+            "hostname"         : self.get_hostname(rcon),
+            "version"          : self.get_version(rcon),
+            "ip"               : self.get_ip(rcon),
+            "port"             : self.get_port(rcon),
+            "map"              : self.get_map(rcon),
+            "player_count"     : self.get_player_count(rcon),
+            "max_player_count" : self.get_max_player_count(rcon),
+            "players"          : self.get_players(rcon)
+        })
 
     def get_hostname(self, rcon):
         return re.findall(self.patterns["server"]["hostname"], rcon)[0]
