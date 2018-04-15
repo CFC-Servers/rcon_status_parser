@@ -81,3 +81,4 @@ class StatusParser():
     def get_players(self, rcon):
         pattern = re.compile("#(?: *)(\d+.*)")
         return [self.get_player_info(player) for player in re.findall(pattern, rcon)]
+
