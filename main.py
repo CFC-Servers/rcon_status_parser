@@ -25,8 +25,6 @@ class StatusParser():
         }
 
     def parse(self, rcon):
-        if type(rcon) is not str:
-            rcon = rcon.decode("utf-8")
 
         return json.dumps({
             "hostname"         : self.get_hostname(rcon),
