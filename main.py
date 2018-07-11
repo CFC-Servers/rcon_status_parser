@@ -26,7 +26,7 @@ class StatusParser():
 
     def parse(self, rcon):
 
-        return json.dumps({
+        return {
             "hostname"         : self.get_hostname(rcon),
             "version"          : self.get_version(rcon),
             "ip"               : self.get_ip(rcon),
@@ -35,7 +35,7 @@ class StatusParser():
             "player_count"     : self.get_player_count(rcon),
             "max_player_count" : self.get_max_player_count(rcon),
             "players"          : self.get_players(rcon)
-        })
+        }
 
     def get_hostname(self, rcon):
         return re.findall(self.patterns["server"]["hostname"], rcon)[0]
