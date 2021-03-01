@@ -59,12 +59,13 @@ class StatusParser():
         return re.findall(self.patterns["server"]["max_player_count"], rcon)[0]
 
     def get_player_info(self, player):
+        # Player ping/loss use backwards lookups for when there is a number surrounded by spaces in a player's name
         player_id             = re.findall(self.patterns["players"]["id"], player)[0]
         player_name           = re.findall(self.patterns["players"]["name"], player)[0]
         player_steam_id       = re.findall(self.patterns["players"]["steam_id"], player)[0]
         player_time_connected = re.findall(self.patterns["players"]["time_connected"], player)[0]
-        player_ping           = re.findall(self.patterns["players"]["ping/loss"], player)[0]
-        player_loss           = re.findall(self.patterns["players"]["ping/loss"], player)[1]
+        player_ping           = re.findall(self.patterns["players"]["ping/loss"], player)[-2]
+        player_loss           = re.findall(self.patterns["players"]["ping/loss"], player)[-1]
         player_ip             = re.findall(self.patterns["players"]["ip"], player)[0]
         player_state          = re.findall(self.patterns["players"]["state"], player)[0]
 
